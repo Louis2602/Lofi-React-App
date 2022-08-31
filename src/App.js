@@ -1,11 +1,19 @@
-import "./App.css";
+import { Box } from '@mui/material';
+
+import NavBar from './components/NavBar/NavBar';
+import RightBar from './components/RightBar/RightBar';
+import MainPage from './components/MainPage/MainPage';
+
+import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
-  );
+	return (
+		<Box>
+			<NavBar />
+			<MainPage />
+			<RightBar />
+		</Box>
+	);
 }
 
 export default App;
