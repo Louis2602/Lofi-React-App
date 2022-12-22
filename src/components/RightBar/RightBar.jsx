@@ -13,13 +13,14 @@ const StyledBox = styled(Box)(({ theme }) => ({
 	border: 'none',
 	borderRadius: '16px',
 	width: '60px',
-	display: 'absolute',
+	position: 'fixed',
 	top: '40vh',
 	right: '16px',
 	[theme.breakpoints.down('sm')]: {
-		width: 'auto',
-		top: '90%',
-		right: '17%',
+		width: 'max-content',
+		top: '92%',
+		left: '50%',
+		transform: 'translateX(-50%)',
 	},
 }));
 
@@ -32,7 +33,7 @@ const StyledButton = styled(Button)({
 });
 const RightBar = () => {
 	return (
-		<StyledBox position='absolute' width={300}>
+		<StyledBox>
 			<Stack
 				direction='column'
 				sx={{ flexDirection: { xs: 'row', sm: 'column' } }}

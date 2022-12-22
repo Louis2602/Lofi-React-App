@@ -1,37 +1,50 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import {
+	AppBar,
+	Toolbar,
+	Typography,
+	IconButton,
+	Button,
+	Switch,
+	Menu,
+	MenuItem,
+	styled,
+	Box,
+} from '@mui/material';
 
-import { styled } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import Switch from '@mui/material/Switch';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-
-import CropFreeIcon from '@mui/icons-material/CropFree';
+import {
+	CropFree,
+	VolumeUp,
+	Share,
+	Person,
+	QueueMusic,
+	ContactSupport,
+	Info,
+} from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-import ShareIcon from '@mui/icons-material/Share';
-import PersonIcon from '@mui/icons-material/Person';
-import QueueMusicIcon from '@mui/icons-material/QueueMusic';
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
-import InfoIcon from '@mui/icons-material/Info';
+import { Link } from 'react-router-dom';
 
 const StyledAppBar = styled(AppBar)({
 	backgroundColor: '#000',
 	color: '#fff',
 });
 
-const StyledIconButton = styled(IconButton)({
+const StyledIconButton = styled(IconButton)(({ theme }) => ({
 	'&:hover': {
 		opacity: '0.5',
 	},
+	[theme.breakpoints.down('md')]: {
+		display: 'none',
+		marginRight: 2,
+	},
+}));
+
+const StyledLink = styled(Link)({
+	color: 'inherit',
+	textDecoration: 'none',
 });
 
-const StyledButton = styled(Button)({
+const StyledButton = styled(Button)(({ theme }) => ({
 	borderRadius: '8px',
 	border: 'none',
 	padding: '5px 16px',
@@ -44,14 +57,11 @@ const StyledButton = styled(Button)({
 		padding: '5px 16px',
 		background: 'hsla(0,0%,100%,.25)',
 	},
-});
+}));
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 	display: 'flex',
 	justifyContent: 'space-between',
-	[theme.breakpoints.down('sm')]: {
-		justifyContent: 'flex-end',
-	},
 }));
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -102,6 +112,13 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 	},
 }));
 
+const Logo = styled(Typography)({
+	textDecoration: 'none',
+	letterSpacing: '1rem',
+	fontSize: '2rem',
+	color: 'white',
+	fontWeight: 'bold',
+});
 const NavBar = () => {
 	const [time, setTime] = useState();
 	const [open, setOpen] = useState(false);
@@ -128,118 +145,108 @@ const NavBar = () => {
 	}, []);
 
 	return (
-		<StyledAppBar position='sticky'>
+		<StyledAppBar position='fixed'>
 			<StyledToolbar>
-				<Typography
-					variant='h6'
-					component='a'
-					href='/'
-					sx={{
-						flexGrow: 1,
-						fontWeight: 600,
-						fontSize: '2rem',
-						letterSpacing: '1rem',
-						color: 'inherit',
-						ml: 5,
-						mr: 5,
-						textDecoration: 'none',
-						display: { xs: 'none', sm: 'block' },
-					}}
+				<Box>
+					<Box padding='0 2rem'>
+						<Logo variant='h6' component='a' href='/'>
+							Lofi
+						</Logo>
+					</Box>
+				</Box>
+				<Box
+					display='flex'
+					justifyContent='space-between'
+					alignItems='center'
 				>
-					Lofi
-				</Typography>
-				<Typography
-					color='inherit'
-					sx={{
-						mr: 2,
-						p: '6px',
-						border: '1px solid #fff',
-						borderRadius: '4px',
-						background: 'hsla(0,0%,100%,.15)',
-						fontWeight: '500',
-					}}
-				>
-					{time}
-				</Typography>
-				<MaterialUISwitch sx={{ m: 2 }} defaultChecked />
-				<StyledButton
-					color='inherit'
-					sx={{ mr: 2, display: { xs: 'none', sm: 'block' } }}
-				>
-					Sign Up
-				</StyledButton>
-				<StyledIconButton
-					size='large'
-					color='inherit'
-					sx={{ mr: 2, display: { xs: 'none', sm: 'block' } }}
-				>
-					<ShareIcon />
-				</StyledIconButton>
-				<StyledIconButton
-					size='large'
-					color='inherit'
-					sx={{ mr: 2, display: { xs: 'none', sm: 'block' } }}
-				>
-					<VolumeUpIcon />
-				</StyledIconButton>
-				<StyledIconButton
-					size='large'
-					color='inherit'
-					sx={{ mr: 2, display: { xs: 'none', sm: 'block' } }}
-				>
-					<CropFreeIcon />
-				</StyledIconButton>
-				<StyledIconButton
-					size='large'
-					color='inherit'
-					sx={{ mr: 2 }}
-					onClick={handleOpen}
-				>
-					<MenuIcon />
-				</StyledIconButton>
+					<Typography
+						color='inherit'
+						sx={{
+							width: '110px',
+							height: '40px',
+							mr: 2,
+							p: '6px',
+							border: '1px solid #fff',
+							borderRadius: '8px',
+							background: 'hsla(0,0%,100%,.15)',
+							fontWeight: '500',
+							display: { xs: 'none', md: 'block' },
+						}}
+						textAlign='center'
+					>
+						{time}
+					</Typography>
+					<MaterialUISwitch sx={{ m: 2 }} defaultChecked />
+					<StyledButton
+						color='inherit'
+						sx={{
+							mr: 2,
+							display: { xs: 'none', md: 'block' },
+						}}
+					>
+						<StyledLink to='/sign-up'>Sign Up</StyledLink>
+					</StyledButton>
+					<StyledIconButton size='large' color='inherit'>
+						<Share />
+					</StyledIconButton>
+					<StyledIconButton size='large' color='inherit'>
+						<VolumeUp />
+					</StyledIconButton>
+					<StyledIconButton size='large' color='inherit'>
+						<CropFree />
+					</StyledIconButton>
+					<IconButton
+						size='large'
+						color='inherit'
+						sx={{ mr: 2, '&:hover': { opacity: 0.5 } }}
+						onClick={handleOpen}
+					>
+						<MenuIcon />
+					</IconButton>
+					<Menu
+						anchorEl={anchorEl}
+						open={open}
+						onClose={handleClose}
+						anchorOrigin={{
+							vertical: 'top',
+							horizontal: 'right',
+						}}
+						transformOrigin={{
+							vertical: 'top',
+							horizontal: 'right',
+						}}
+						disableAutoFocusItem
+						PaperProps={{
+							style: {
+								left: '50%',
+								transform: 'translateX(10%) translateY(30%)',
+							},
+						}}
+						MenuListProps={{
+							style: {
+								padding: 0,
+							},
+						}}
+					>
+						<MenuItem>
+							<Person sx={{ mr: 2 }} />
+							Login
+						</MenuItem>
+						<MenuItem>
+							<QueueMusic sx={{ mr: 2 }} />
+							Playlist
+						</MenuItem>
+						<MenuItem>
+							<ContactSupport sx={{ mr: 2 }} />
+							Contact us
+						</MenuItem>
+						<MenuItem>
+							<Info sx={{ mr: 2 }} />
+							About us
+						</MenuItem>
+					</Menu>
+				</Box>
 			</StyledToolbar>
-			<Menu
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				anchorOrigin={{
-					vertical: 'top',
-					horizontal: 'right',
-				}}
-				transformOrigin={{
-					vertical: 'top',
-					horizontal: 'right',
-				}}
-				disableAutoFocusItem
-				PaperProps={{
-					style: {
-						left: '50%',
-						transform: 'translateX(10%) translateY(30%)',
-					},
-				}}
-				MenuListProps={{
-					style: {
-						padding: 0,
-					},
-				}}
-			>
-				<MenuItem>
-					<PersonIcon sx={{ mr: 2 }} />
-					Login
-				</MenuItem>
-				<MenuItem>
-					<QueueMusicIcon sx={{ mr: 2 }} />
-					Playlist
-				</MenuItem>
-				<MenuItem>
-					<ContactSupportIcon sx={{ mr: 2 }} />
-					Contact us
-				</MenuItem>
-				<MenuItem>
-					<InfoIcon sx={{ mr: 2 }} />
-					About us
-				</MenuItem>
-			</Menu>
 		</StyledAppBar>
 	);
 };
