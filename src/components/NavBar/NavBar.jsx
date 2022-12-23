@@ -33,6 +33,9 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 	zIndex: 1,
 	padding: '0 48px',
 	color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}`,
+	[theme.breakpoints.down('md')]: {
+		padding: 0
+	}
 }));
 
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
@@ -79,7 +82,9 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 const StyledToolbar = styled(Toolbar)({
 	display: 'flex',
-	justifyContent: 'space-between',
+	justifyContent: 'space-around',
+	alignItems: 'center',
+	padding: 0
 });
 
 const StyledTime = styled(Typography)(({ theme }) => ({

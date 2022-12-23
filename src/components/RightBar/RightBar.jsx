@@ -1,12 +1,15 @@
 import React from 'react';
 
 // material ui
-import { Box, styled, Stack, Button } from '@mui/material';
+import { Box, styled, Stack, Tooltip } from '@mui/material';
 // icons
-import TuneIcon from '@mui/icons-material/Tune';
-import HomeIcon from '@mui/icons-material/Home';
-import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
-import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
+import {
+	Tune,
+	Home,
+	AutoAwesomeMosaic,
+	ChangeCircle,
+} from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const StyledBox = styled(Box)(({ theme }) => ({
 	border: 'none',
@@ -19,14 +22,15 @@ const StyledBox = styled(Box)(({ theme }) => ({
 	backdropFilter: 'blur(15px)',
 	background: 'rgba(0,0,0,0.8)',
 	[theme.breakpoints.down('sm')]: {
-		top: '90%',
+		top: '88%',
 		left: '50%',
 		transform: 'translateX(-50%)',
 	},
 }));
 
-const StyledButton = styled(Button)({
-	color: '#fff',
+const StyledLink = styled(Link)({
+	textDecoration: 'none',
+	color: 'white',
 	padding: '16px',
 	'&:hover': {
 		opacity: '0.5',
@@ -40,18 +44,26 @@ const RightBar = () => {
 				direction='column'
 				sx={{ flexDirection: { xs: 'row', sm: 'column' } }}
 			>
-				<StyledButton>
-					<TuneIcon />
-				</StyledButton>
-				<StyledButton>
-					<AutoAwesomeMosaicIcon />
-				</StyledButton>
-				<StyledButton>
-					<ChangeCircleIcon />
-				</StyledButton>
-				<StyledButton>
-					<HomeIcon />
-				</StyledButton>
+				<Tooltip title='Mixer' placement='left'>
+					<StyledLink>
+						<Tune />
+					</StyledLink>
+				</Tooltip>
+				<Tooltip title='Templates' placement='left'>
+					<StyledLink>
+						<AutoAwesomeMosaic />
+					</StyledLink>
+				</Tooltip>
+				<Tooltip title='Reset' placement='left'>
+					<StyledLink>
+						<ChangeCircle />
+					</StyledLink>
+				</Tooltip>
+				<Tooltip title='Home' placement='left'>
+					<StyledLink to='/'>
+						<Home />
+					</StyledLink>
+				</Tooltip>
 			</Stack>
 		</StyledBox>
 	);

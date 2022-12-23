@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 import NavBar from './components/NavBar/NavBar';
 import RightBar from './components/RightBar/RightBar';
 import Home from './components/Home/Home';
 import SignUp from './pages/SignUp';
+import { CssBaseline } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { useState } from 'react';
 
 const ScrollToTop = () => {
 	const { pathName } = useLocation();
@@ -25,6 +25,7 @@ function App() {
 	});
 	return (
 		<ThemeProvider theme={theme}>
+			<CssBaseline />
 			<div className='app'>
 				<BrowserRouter>
 					<NavBar darkMode={darkMode} setDarkMode={setDarkMode} />

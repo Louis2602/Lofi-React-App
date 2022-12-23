@@ -1,39 +1,41 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, styled, CardMedia } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import lofi_day_video from '../../assets/lofi_day.mp4';
-import lofi_night_video from '../../assets/lofi_night.mp4';
+import lofi_day_gif from '../../assets/lofi_day.gif';
+import lofi_night_gif from '../../assets/lofi_night.gif';
 
+const Container = styled(Box)({
+	position: 'fixed',
+	right: 0,
+	bottom: 0,
+	minWidth: '100%',
+	minHeight: '100%',
+});
 const Home = () => {
 	const theme = useTheme();
 	return (
-		<Box>
+		<Container>
 			{theme.palette.mode === 'light' ? (
 				<Box>
-					<video
-						src={lofi_day_video}
-						style={{
-							width: '100%',
-							height: '100%',
-						}}
-						preload='auto'
-						loop
+					<CardMedia
+						component='img'
+						src={lofi_day_gif}
+						sx={{ minHeight: '100vh' }}
 					/>
 				</Box>
 			) : (
 				<Box>
-					<video
-						src={lofi_night_video}
-						style={{
-							width: '100%',
-							height: '100%',
-						}}
-						preload='auto'
-						loop
+					<CardMedia
+						component='img'
+						src={lofi_night_gif}
+						sx={{ minHeight: '100vh' }}
 					/>
 				</Box>
 			)}
-		</Box>
+			<Box position='absolute' sx={{top: '50%', left: '50%', right: '50%', bottom: '50%'}}>
+				Hello
+			</Box>
+		</Container>
 	);
 };
 
