@@ -5,6 +5,8 @@ import NavBar from './components/NavBar/NavBar';
 import RightBar from './components/RightBar/RightBar';
 import Home from './components/Home/Home';
 import SignUp from './pages/SignUp';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useState } from 'react';
 
 const ScrollToTop = () => {
 	const { pathName } = useLocation();
@@ -15,20 +17,26 @@ const ScrollToTop = () => {
 };
 
 function App() {
+	const [darkMode, setDarkMode] = useState(false);
+	const theme = createTheme({
+		palette: {
+			mode: darkMode ? 'dark' : 'light',
+		},
+	});
 	return (
-		<div className='app'>
-			<BrowserRouter>
-				<NavBar />
-				<RightBar />
-				<ScrollToTop />
-				<Routes>
-					<Route path='/' element={<Home />}></Route>
-				</Routes>
-				<Routes>
-					<Route path='/sign-up' element={<SignUp />}></Route>
-				</Routes>
-			</BrowserRouter>
-		</div>
+		<ThemeProvider theme={theme}>
+			<div className='app'>
+				<BrowserRouter>
+					<NavBar darkMode={darkMode} setDarkMode={setDarkMode} />
+					<RightBar />
+					<ScrollToTop />
+					<Routes>
+						<Route path='/' element={<Home />}></Route>
+						<Route path='/sign-up' element={<SignUp />}></Route>
+					</Routes>
+				</BrowserRouter>
+			</div>
+		</ThemeProvider>
 	);
 }
 

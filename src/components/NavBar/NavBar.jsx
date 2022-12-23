@@ -11,7 +11,7 @@ import {
 	styled,
 	Box,
 } from '@mui/material';
-
+import Logo from '../../assets/GifLogo.gif';
 import {
 	CropFree,
 	VolumeUp,
@@ -24,10 +24,16 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 
-const StyledAppBar = styled(AppBar)({
-	backgroundColor: '#000',
-	color: '#fff',
-});
+const StyledAppBar = styled(AppBar)(({ theme }) => ({
+	position: 'fixed',
+	backgroundColor: 'transparent',
+	backgroundImage: 'none',
+	boxShadow: 'none',
+	height: '80px',
+	zIndex: 1,
+	padding: '0 48px',
+	color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}`,
+}));
 
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
 	'&:hover': {
@@ -44,24 +50,51 @@ const StyledLink = styled(Link)({
 	textDecoration: 'none',
 });
 
+const StyledImg = styled('img')({
+	borderStyle: 'none',
+	verticalAlign: 'middle',
+	cursor: 'pointer',
+	height: '100px',
+});
 const StyledButton = styled(Button)(({ theme }) => ({
+	margin: '0 1rem',
 	borderRadius: '8px',
-	border: 'none',
 	padding: '5px 16px',
 	background: 'hsla(0,0%,100%,.25)',
 	transition: 'all .3s ease',
 	'&:hover': {
 		opacity: '0.5',
-		borderRadius: '8px',
-		border: 'none',
-		padding: '5px 16px',
-		background: 'hsla(0,0%,100%,.25)',
 	},
+	[theme.breakpoints.down('md')]: {
+		display: 'none',
+	},
+	color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}`,
+	border: `${
+		theme.palette.mode === 'dark' ? '1px solid white' : '1px solid black'
+	}`,
 }));
 
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
+const StyledToolbar = styled(Toolbar)({
 	display: 'flex',
 	justifyContent: 'space-between',
+});
+
+const StyledTime = styled(Typography)(({ theme }) => ({
+	textAlign: 'center',
+	width: '110px',
+	height: '40px',
+	margin: '1rem',
+	padding: '6px',
+	borderRadius: '8px',
+	background: 'hsla(0,0%,100%,.15)',
+	fontWeight: '500',
+	[theme.breakpoints.down('md')]: {
+		display: 'none',
+	},
+	color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}`,
+	border: `${
+		theme.palette.mode === 'dark' ? '1px solid white' : '1px solid black'
+	}`,
 }));
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -112,14 +145,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 	},
 }));
 
-const Logo = styled(Typography)({
-	textDecoration: 'none',
-	letterSpacing: '1rem',
-	fontSize: '2rem',
-	color: 'white',
-	fontWeight: 'bold',
-});
-const NavBar = () => {
+const NavBar = ({ darkMode, setDarkMode }) => {
 	const [time, setTime] = useState();
 	const [open, setOpen] = useState(false);
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -143,15 +169,17 @@ const NavBar = () => {
 			clearInterval(timer);
 		};
 	}, []);
-
+	const handleChange = () => {
+		setDarkMode(!darkMode);
+	};
 	return (
-		<StyledAppBar position='fixed'>
+		<StyledAppBar>
 			<StyledToolbar>
 				<Box>
 					<Box padding='0 2rem'>
-						<Logo variant='h6' component='a' href='/'>
-							Lofi
-						</Logo>
+						<StyledLink to='/'>
+							<StyledImg src={Logo} alt='' />
+						</StyledLink>
 					</Box>
 				</Box>
 				<Box
@@ -159,31 +187,13 @@ const NavBar = () => {
 					justifyContent='space-between'
 					alignItems='center'
 				>
-					<Typography
-						color='inherit'
-						sx={{
-							width: '110px',
-							height: '40px',
-							mr: 2,
-							p: '6px',
-							border: '1px solid #fff',
-							borderRadius: '8px',
-							background: 'hsla(0,0%,100%,.15)',
-							fontWeight: '500',
-							display: { xs: 'none', md: 'block' },
-						}}
-						textAlign='center'
-					>
-						{time}
-					</Typography>
-					<MaterialUISwitch sx={{ m: 2 }} defaultChecked />
-					<StyledButton
-						color='inherit'
-						sx={{
-							mr: 2,
-							display: { xs: 'none', md: 'block' },
-						}}
-					>
+					<StyledTime>{time}</StyledTime>
+					<MaterialUISwitch
+						sx={{ m: 2 }}
+						checked={darkMode}
+						onChange={handleChange}
+					/>
+					<StyledButton>
 						<StyledLink to='/sign-up'>Sign Up</StyledLink>
 					</StyledButton>
 					<StyledIconButton size='large' color='inherit'>

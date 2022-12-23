@@ -12,13 +12,13 @@ const StyledBox = styled(Box)(({ theme }) => ({
 	backgroundColor: '#333',
 	border: 'none',
 	borderRadius: '16px',
-	width: '60px',
+	width: 'max-content',
 	position: 'fixed',
 	top: '40vh',
 	right: '16px',
+	zIndex: '2',
 	[theme.breakpoints.down('sm')]: {
-		width: 'max-content',
-		top: '92%',
+		top: '90%',
 		left: '50%',
 		transform: 'translateX(-50%)',
 	},
@@ -29,6 +29,7 @@ const StyledButton = styled(Button)({
 	padding: '16px',
 	'&:hover': {
 		opacity: '0.5',
+		cursor: 'pointer',
 	},
 });
 const RightBar = () => {
