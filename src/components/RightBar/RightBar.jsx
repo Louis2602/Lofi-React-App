@@ -9,7 +9,6 @@ import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 
 const StyledBox = styled(Box)(({ theme }) => ({
-	backgroundColor: '#333',
 	border: 'none',
 	borderRadius: '16px',
 	width: 'max-content',
@@ -17,6 +16,8 @@ const StyledBox = styled(Box)(({ theme }) => ({
 	top: '40vh',
 	right: '16px',
 	zIndex: '2',
+	backdropFilter: 'blur(15px)',
+	background: 'rgba(0,0,0,0.8)',
 	[theme.breakpoints.down('sm')]: {
 		top: '90%',
 		left: '50%',

@@ -50,12 +50,15 @@ const StyledLink = styled(Link)({
 	textDecoration: 'none',
 });
 
-const StyledImg = styled('img')({
+const StyledImg = styled('img')(({ theme }) => ({
 	borderStyle: 'none',
 	verticalAlign: 'middle',
 	cursor: 'pointer',
 	height: '100px',
-});
+	[theme.breakpoints.down('md')]: {
+		display: 'flex',
+	},
+}));
 const StyledButton = styled(Button)(({ theme }) => ({
 	margin: '0 1rem',
 	borderRadius: '8px',
@@ -176,15 +179,13 @@ const NavBar = ({ darkMode, setDarkMode }) => {
 		<StyledAppBar>
 			<StyledToolbar>
 				<Box>
-					<Box padding='0 2rem'>
-						<StyledLink to='/'>
-							<StyledImg src={Logo} alt='' />
-						</StyledLink>
-					</Box>
+					<StyledLink to='/'>
+						<StyledImg src={Logo} alt='' />
+					</StyledLink>
 				</Box>
 				<Box
 					display='flex'
-					justifyContent='space-between'
+					justifyContent='space-around'
 					alignItems='center'
 				>
 					<StyledTime>{time}</StyledTime>
