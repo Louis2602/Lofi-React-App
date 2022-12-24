@@ -16,7 +16,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
 	borderRadius: '16px',
 	width: 'max-content',
 	position: 'fixed',
-	top: '40vh',
+	top: '40%',
 	right: '16px',
 	zIndex: '2',
 	backdropFilter: 'blur(15px)',
