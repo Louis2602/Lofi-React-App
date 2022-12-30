@@ -8,8 +8,8 @@ import {
 	Switch,
 	Menu,
 	MenuItem,
-	styled,
 	Box,
+	styled,
 } from '@mui/material';
 import Logo from '../../assets/GifLogo.gif';
 import {
@@ -75,9 +75,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 		display: 'none',
 	},
 	color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}`,
-	border: `${
-		theme.palette.mode === 'dark' ? '1px solid white' : '1px solid black'
-	}`,
+	border: `${theme.palette.mode === 'dark' ? '1px solid white' : '1px solid black'
+		}`,
 }));
 
 const StyledToolbar = styled(Toolbar)({
@@ -100,9 +99,8 @@ const StyledTime = styled(Typography)(({ theme }) => ({
 		display: 'none',
 	},
 	color: `${theme.palette.mode === 'dark' ? 'white' : 'black'}`,
-	border: `${
-		theme.palette.mode === 'dark' ? '1px solid white' : '1px solid black'
-	}`,
+	border: `${theme.palette.mode === 'dark' ? '1px solid white' : '1px solid black'
+		}`,
 }));
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({

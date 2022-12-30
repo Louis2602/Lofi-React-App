@@ -1,8 +1,5 @@
 import React from 'react';
-
-// material ui
-import { Box, styled, Stack, Tooltip } from '@mui/material';
-// icons
+import { Box, Stack, Tooltip, styled } from '@mui/material';
 import {
 	Tune,
 	Home,

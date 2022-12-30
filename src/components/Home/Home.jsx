@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {
 	Box,
-	styled,
 	CardMedia,
 	Card,
 	CardContent,
 	IconButton,
 	Typography,
+	styled,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import lofi_day_gif from '../../assets/lofi_day.gif';
