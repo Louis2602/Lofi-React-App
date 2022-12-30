@@ -178,6 +178,17 @@ const NavBar = ({ darkMode, setDarkMode }) => {
 	const handleChange = () => {
 		setDarkMode(!darkMode);
 	};
+	const [isFullscreen, setIsFullscreen] = useState(false);
+
+	const handleFullscreen = () => {
+		setIsFullscreen(Boolean(document.fullscreenElement));
+		if (isFullscreen) {
+			document.body.requestFullscreen();
+		} else {
+				document.exitFullscreen();
+		}
+	}
+
 	return (
 		<StyledAppBar>
 			<StyledToolbar>
@@ -206,7 +217,7 @@ const NavBar = ({ darkMode, setDarkMode }) => {
 					<StyledIconButton size='large' color='inherit'>
 						<VolumeUp />
 					</StyledIconButton>
-					<StyledIconButton size='large' color='inherit'>
+					<StyledIconButton size='large' color='inherit' onClick={handleFullscreen}>
 						<CropFree />
 					</StyledIconButton>
 					<IconButton
@@ -236,11 +247,11 @@ const NavBar = ({ darkMode, setDarkMode }) => {
 								transform: 'translateX(10%) translateY(30%)',
 							},
 						}}
-						MenuListProps={{
-							style: {
-								padding: 0,
-							},
-						}}
+						// MenuListProps={{
+						// 	style: {
+						// 		padding: 0,
+						// 	},
+						// }}
 					>
 						<MenuItem>
 							<Person sx={{ mr: 2 }} />
